@@ -30,9 +30,10 @@ setup.sh는 `pi install`을 실행하고 전역 AGENTS.md를 링크한다. 기�
 
 ```json
 {
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-opus-4-8",
-  "theme": "dark"
+  "defaultProvider": "zai-coding-cn",
+  "defaultModel": "glm-5.3",
+  "defaultThinkingLevel": "max",
+  "theme": "tokyo-night"
 }
 ```
 
