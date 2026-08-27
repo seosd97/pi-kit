@@ -15,7 +15,7 @@
 
 번들 확장: pi-web-access · pi-lens · @juicesharp/rpiv-ask-user-question · @ff-labs/pi-fff · pi-simplify · pi-background-tasks · @firstpick/pi-themes-bundle
 
-## 설치 (새 머신)
+## 설치
 
 ```bash
 npm install -g --ignore-scripts @earendil-works/pi-coding-agent
@@ -24,11 +24,14 @@ curl -fsSL https://raw.githubusercontent.com/seosd97/pi-kit/main/setup.sh | bash
 
 setup.sh는 `pi install` 후 AGENTS.md를 심볼릭 링크한다. 기존 파일은 백업.
 
+## 업데이트
+
+- 각 머신: `pi update --extensions` — lockfile 기준 설치.
+- 버전 당기기: repo에서 `npm update <패키지>` 후 lockfile 커밋·push.
+
 ## 워크플로우
 
 - 수정은 이 repo에서. 반영은 pi에서 `/reload`.
-- 다른 머신: `pi update --extensions` — lockfile 기준 설치.
-- 버전 당기기: repo에서 `npm update <패키지>` 후 lockfile 커밋.
 - `~/.pi/agent/git/` 은 pi가 받아 둔 복사본 — 직접 수정 금지.
 - 확장 진입점(`node_modules/...`)은 upstream 구조 변경 시 깨질 수 있음 — 매니페스트와 함께 점검.
 
