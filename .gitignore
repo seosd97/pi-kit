@@ -1,5 +1,44 @@
-node_modules/
+# OS
 .DS_Store
+Thumbs.db
+Desktop.ini
+*~
+
+# Editors / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.history/
+
+# Secrets / environment
 .env
-*.local.json
+.env.*
+!.env.example
+
+# Logs
 *.log
+logs/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Build artifacts
+dist/
+build/
+out/
+*.tsbuildinfo
+coverage/
+
+# Local-only config
+*.local.json
+
+# pi runtime state
+.pi/
+
+# Backups / merge remnants
+*.bak
+*.orig
