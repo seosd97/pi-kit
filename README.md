@@ -11,9 +11,19 @@
 | `extensions/` `skills/` `themes/` | kit 소유 리소스 (현재 비어 있음) |
 | `package.json` | pi 매니페스트 — 확장 7종 번들 |
 | `package-lock.json` | 설치 재현성 고정 |
-| `setup.sh` | 새 머신 설치 스크립트 |
+| `setup.sh` | 설치 스크립트 |
 
-번들 확장: pi-web-access · pi-lens · @juicesharp/rpiv-ask-user-question · @ff-labs/pi-fff · pi-simplify · pi-background-tasks · @firstpick/pi-themes-bundle
+### 번들 확장
+
+| 패키지 | 제공 |
+| --- | --- |
+| [pi-web-access](https://www.npmjs.com/package/pi-web-access) | 웹 검색·출처 확인·콘텐츠 fetch |
+| [pi-lens](https://www.npmjs.com/package/pi-lens) | LSP·ast-grep 진단, 심볼·모듈 탐색 |
+| [@juicesharp/rpiv-ask-user-question](https://www.npmjs.com/package/@juicesharp/rpiv-ask-user-question) | 구조화된 사용자 질문 |
+| [@ff-labs/pi-fff](https://www.npmjs.com/package/@ff-labs/pi-fff) | 퍼지 파일 탐색·그렙 |
+| [pi-simplify](https://www.npmjs.com/package/pi-simplify) | 코드 단순화 리뷰 |
+| [pi-background-tasks](https://www.npmjs.com/package/pi-background-tasks) | 백그라운드 태스크·에이전트 위임 |
+| [@firstpick/pi-themes-bundle](https://www.npmjs.com/package/@firstpick/pi-themes-bundle) | 테마 모음 |
 
 ## 설치
 
