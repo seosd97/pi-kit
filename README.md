@@ -4,14 +4,17 @@
 
 ## 구성
 
-```
-config/AGENTS.md   # 전역 지시문 — setup.sh가 ~/.pi/agent/AGENTS.md에 심볼릭 링크
-extensions/
-skills/
-prompts/plan.md    # /plan 프롬프트 템플릿
-themes/
-setup.sh           # 새 머신 설치 스크립트
-```
+| 경로 | 내용 |
+| --- | --- |
+| `config/AGENTS.md` | 전역 에이전트 지시문. 코딩 실수를 줄이는 행동 강령 4가지 — 1) Think Before Coding, 2) Simplicity First, 3) Surgical Changes, 4) Goal-Driven Execution. setup.sh가 `~/.pi/agent/AGENTS.md`로 심볼릭 링크 |
+| `prompts/plan.md` | `/plan` 프롬프트 템플릿. 구현 전 계획 수립용 — 관련 파일 전체 읽기 → 단계(what/why/risk)·수정 파일·테스트·미결정 사항 출력 |
+| `extensions/` | pi 확장 (현재 비어 있음, 예약) |
+| `skills/` | agent 스킬 (현재 비어 있음, 예약) |
+| `themes/` | 커스텀 테마 (현재 비어 있음, 예약) |
+| `package.json` | pi 패키지 매니페스트 — 위 디렉터리들을 pi에 등록 |
+| `setup.sh` | 새 머신 설치 스크립트 (`pi install` + AGENTS.md 심볼릭 링크) |
+
+`settings.json`, `auth.json` 등 머신 로컬 파일은 repo에 넣지 않는다.
 
 ## 새 머신에 설치
 
