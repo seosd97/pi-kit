@@ -12,6 +12,7 @@
 | `skills/` | agent 스킬 (현재 비어 있음, 예약) |
 | `themes/` | 커스텀 테마 (현재 비어 있음, 예약) |
 | `package.json` | pi 패키지 매니페스트 — 위 디렉터리들을 pi에 등록 |
+| `packages.txt` | npm 확장 설치 목록 (아래 "확장 패키지" 참고) |
 | `setup.sh` | 새 머신 설치 스크립트 (`pi install` + AGENTS.md 심볼릭 링크) |
 
 `settings.json`, `auth.json` 등 머신 로컬 파일은 repo에 넣지 않는다.
@@ -26,6 +27,24 @@ curl -fsSL https://raw.githubusercontent.com/seosd97/pi-kit/main/setup.sh | bash
 ```
 
 setup.sh는 `pi install`을 실행하고 전역 AGENTS.md를 링크한다. 기존 AGENTS.md가 있으면 백업해 둔다.
+
+## 확장 패키지
+
+settings.json의 `packages` 배열이 설치 기록이다. 일상 갱신은 이 기록을 기반으로 한다:
+
+```bash
+pi update --extensions        # 전체 갱신
+pi update npm:pi-lens         # 개별 갱신
+pi list                       # 설치 확인
+```
+
+새 머신 복원은 `packages.txt`로 한다 (버전을 적지 않아 갱신 대상에서 빠지지 않게 한다):
+
+```bash
+xargs -n1 pi install < packages.txt
+```
+
+설치한 확장: pi-web-access (웹 검색), pi-lens (진단/LSP/ast-grep), @juicesharp/rpiv-ask-user-question (구조화된 질문), @ff-labs/pi-fff (퍼지 파일/그렙), pi-simplify (코드 단순화), pi-background-tasks (백그라운드 태스크), @firstpick/pi-themes-bundle (테마 번들).
 
 ## settings.json
 
