@@ -2,10 +2,37 @@
   "name": "@seosd/pi-kit",
   "private": true,
   "keywords": ["pi-package"],
+  "dependencies": {
+    "pi-web-access": "^0.25.0",
+    "pi-lens": "^4.1.2",
+    "@juicesharp/rpiv-ask-user-question": "^2.7.1",
+    "@ff-labs/pi-fff": "^0.10.5",
+    "pi-simplify": "^0.2.3",
+    "pi-background-tasks": "^2.4.2",
+    "@firstpick/pi-themes-bundle": "^0.1.6"
+  },
+  "bundledDependencies": [
+    "pi-web-access",
+    "pi-lens",
+    "@juicesharp/rpiv-ask-user-question",
+    "@ff-labs/pi-fff",
+    "pi-simplify",
+    "pi-background-tasks",
+    "@firstpick/pi-themes-bundle"
+  ],
   "pi": {
-    "extensions": ["./extensions"],
-    "skills": ["./skills"],
+    "extensions": [
+      "./extensions",
+      "./node_modules/pi-web-access/index.ts",
+      "./node_modules/pi-lens/dist/index.js",
+      "./node_modules/@juicesharp/rpiv-ask-user-question/index.ts",
+      "./node_modules/@ff-labs/pi-fff/src/index.ts",
+      "./node_modules/pi-simplify/dist/index.js",
+      "./node_modules/pi-background-tasks/extensions/anthropic-attribution.ts",
+      "./node_modules/pi-background-tasks/extensions/background-tasks.ts"
+    ],
+    "skills": ["./skills", "./node_modules/pi-lens/skills"],
     "prompts": ["./prompts"],
-    "themes": ["./themes"]
+    "themes": ["./themes", "./node_modules/@firstpick/pi-themes-bundle/themes"]
   }
 }
