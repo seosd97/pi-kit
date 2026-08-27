@@ -1,86 +1,32 @@
 # pi-kit
 
-Personal pi coding-agent kit. Single source of truth for extensions, skills,
-prompt templates, and themes, deployed to multiple machines as a local-path
-pi package.
+개인용 pi 설정 패키지. `pi install`로 배포하고, 새 머신에는 setup.sh로 설치한다.
 
-Tested with:
-- Pi 0.84.x
-- Node.js 24.x
-- macOS / Linux (Windows needs a bootstrap script — not included)
-
-## Layout
+## 구성
 
 ```
-pi-kit/
-├── package.json     # root pi manifest (do NOT move into a subdirectory)
-├── extensions/      # pi loads *.ts / */index.ts
-├── skills/          # pi loads SKILL.md folders
-├── prompts/         # pi loads *.md as /name templates
-├── themes/          # pi loads *.json themes
-└── config/
-    └── AGENTS.md    # global context file -> symlinked to ~/.pi/agent/AGENTS.md
+config/AGENTS.md   # 전역 지시문 — setup.sh가 ~/.pi/agent/AGENTS.md에 심볼릭 링크
+extensions/
+skills/
+prompts/plan.md    # /plan 프롬프트 템플릿
+themes/
+setup.sh           # 새 머신 설치 스크립트
 ```
 
-## Setup — first machine (this repo already exists)
+## 새 머신에 설치
+
+pi가 먼저 깔려 있어야 한다.
 
 ```bash
-cd ~/Documents/works/pi-kit
-git remote add origin git@github.com:seosd/pi-kit.git
-git push -u origin main
+npm install -g --ignore-scripts @earendil-works/pi-coding-agent
+curl -fsSL https://raw.githubusercontent.com/seosd97/pi-kit/main/setup.sh | bash
 ```
 
-## Setup — additional machine
+setup.sh는 `pi install`을 실행하고 전역 AGENTS.md를 링크한다. 기존 AGENTS.md가 있으면 백업해 둔다.
 
-```bash
-git clone git@github.com:seosd/pi-kit.git ~/Documents/works/pi-kit
-pi install "$HOME/Documents/works/pi-kit"
+## settings.json
 
-# symlink global AGENTS.md (backs up an existing file first)
-[ -f ~/.pi/agent/AGENTS.md ] && mv ~/.pi/agent/AGENTS.md ~/.pi/agent/AGENTS.md.bak.$(date +%s)
-ln -sf ~/Documents/works/pi-kit/config/AGENTS.md ~/.pi/agent/AGENTS.md
-```
-
-Verify: start `pi` — the startup header must list `plan` under prompt templates.
-
-## Update flow
-
-```bash
-git -C ~/Documents/works/pi-kit pull --ff-only
-```
-then `/reload` inside pi (or restart pi).
-
-If a runtime npm dependency is ever added to package.json, also run
-`npm install` inside the repo after pulling.
-
-## Read-only plan mode
-
-`prompts/plan.md` is guidance only — it does not block write tools.
-For a tool-level read-only session:
-
-```bash
-alias pi-plan='pi --tools read,grep,find,ls'
-```
-
-Then run `/plan` inside that session.
-
-## Environment matrix
-
-| Environment | Package source | Global AGENTS.md | Update |
-|---|---|---|---|
-| Personal machine | local path (`pi install <repo>`) | symlinked from repo | `git pull --ff-only` + `/reload` |
-| CI / one-off | `pi install git:github.com/seosd/pi-kit@<commit>` | not applied by default | reinstall at new commit |
-| Team project | project `.pi/settings.json` team package | project `AGENTS.md` | pinned ref: edit ref + reinstall (NOT `pi update --extensions`) |
-
-Note: pinned (`@ref`) packages are skipped by `pi update --extensions`.
-Move them with `pi install git:...@<new-ref>`.
-
-## settings.json policy
-
-`~/.pi/agent/settings.json` stays machine-local (pi writes to it: installs,
-`/settings`, changelog version). Do not symlink or commit it.
-
-Current desired values (apply manually on a new machine):
+머신 로컬로만 두고 repo에는 넣지 않는다. 권장값:
 
 ```json
 {
@@ -90,15 +36,16 @@ Current desired values (apply manually on a new machine):
 }
 ```
 
-## Never sync
+## 수정과 갱신
 
-`auth.json`, `trust.json`, `sessions/`, `models-store.json` — machine/secret state.
+- 작업은 이 repo(`~/Documents/works/pi-kit`)에서 한다. 수정 후 pi에서 `/reload`.
+- `~/.pi/agent/git/` 아래는 pi가 받아 둔 복사본이므로 직접 고치지 않는다.
+- 다른 머신에는 `pi update --extensions`로 반영한다.
 
-## Extension authoring notes
+## /plan
 
-- One extension per file in `extensions/`, with a header comment stating
-  purpose and how to remove it (kickstart-style).
-- Iterate locally: edits apply on `/reload`; no reinstall needed for
-  local-path packages.
-- Heavy/rarely-used tools: defer activation via `pi.setActiveTools()` when
-  the active tool set grows enough to matter.
+`/plan`은 계획을 세우는 프롬프트일 뿐 쓰기 도구를 막지는 않는다. 읽기 전용으로 쓰려면 도구를 제한해서 실행한다.
+
+```bash
+alias pi-plan='pi --tools read,grep,find,ls'
+```
