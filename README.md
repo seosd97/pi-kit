@@ -42,7 +42,7 @@ setup.sh는 `pi install`을 실행하고 전역 AGENTS.md를 링크한다. 기�
 pi update --extensions        # pi-kit ref 갱신 + npm install (lockfile 기준)
 ```
 
-번들된 확장: pi-web-access (웹 검색), pi-lens (진단/LSP/ast-grep), @juicesharp/rpiv-ask-user-question (구조화된 질문), @ff-labs/pi-fff (퍠지 파일/그렙), pi-simplify (코드 단순화), pi-background-tasks (백그라운드 태스크), @firstpick/pi-themes-bundle (테마 번들).
+번들된 확장: pi-web-access (웹 검색), pi-lens (진단/LSP/ast-grep), @juicesharp/rpiv-ask-user-question (구조화된 질문), @ff-labs/pi-fff (퍼지 파일/그렙), pi-simplify (코드 단순화), pi-background-tasks (백그라운드 태스크), @firstpick/pi-themes-bundle (테마 번들).
 
 버전 정책: `^` 범위 + lockfile 커밋. 범위 내 최신을 받되 lockfile이 설치를 고정한다. 새 버전을 당기려면 repo에서 `npm update <패키지>` 후 lockfile 변경을 커밋한다.
 
