@@ -13,7 +13,7 @@ argument-hint: "<focus>"
 Analyze the task and produce an implementation plan. Do not implement anything —
 `PLAN.md` is the ONLY file you may create or modify.
 
-## Steps
+## Analysis
 
 1. Read the relevant files in full before drawing conclusions.
 2. Search for related code and existing patterns (grep/find).

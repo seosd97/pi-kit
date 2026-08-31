@@ -6,7 +6,7 @@
 
 | 경로 | 내용 |
 | --- | --- |
-| `config/AGENTS.md` | 전역 행동 강령 4원칙. setup.sh가 `~/.pi/agent/AGENTS.md`로 심볼릭 링크 |
+| `config/AGENTS.md` | 전역 행동 강령 (행동 원칙 + 도구 선호). setup.sh가 `~/.pi/agent/AGENTS.md`로 심볼릭 링크 |
 | `prompts/plan.md` | `/plan` — 분석 후 `PLAN.md` 작성 (구현 안 함) |
 | `prompts/impl.md` | `/impl` — `PLAN.md` 단계별 실행, 검증마다 체크박스 갱신 |
 | `extensions/` `skills/` `themes/` | kit 소유 리소스 (현재 비어 있음) |
