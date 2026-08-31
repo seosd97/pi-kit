@@ -1,3 +1,8 @@
+---
+description: 구현 전 계획 수립 (읽기 전용 분석)
+argument-hint: "<focus>"
+---
+
 <!--
   Plan workflow — GUIDANCE LEVEL ONLY.
   This template instructs the model; it does NOT block write tools.
@@ -7,7 +12,6 @@
     pi --tools read,grep,find,ls
 
   ...then run /plan in that session.
-  (or use the shell alias: pi-plan — see README.md)
 -->
 Analyze the task and produce an implementation plan. Do not modify anything yet.
 
@@ -22,4 +26,4 @@ Analyze the task and produce an implementation plan. Do not modify anything yet.
 - Tests to add or update
 - Open questions that need my decision
 
-Focus: {{focus}}
+Focus: ${@:-the current task}
