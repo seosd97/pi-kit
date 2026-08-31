@@ -9,8 +9,12 @@
 | `config/AGENTS.md` | 전역 행동 강령 (행동 원칙 + 도구 선호). setup.sh가 `~/.pi/agent/AGENTS.md`로 심볼릭 링크 |
 | `prompts/plan.md` | `/plan` — 분석 후 `PLAN.md` 작성 (구현 안 함) |
 | `prompts/impl.md` | `/impl` — `PLAN.md` 단계별 실행, 검증마다 체크박스 갱신 |
-| `extensions/` | 번들 확장 심볼릭 링크 (`node_modules/<패키지>` 가리킴, 표기명 = 링크명). 로딩 시 각 패키지의 자체 pi 매니페스트를 위임 읽기 |
-| `skills/` `themes/` | kit 소유 리소스 (현재 비어 있음) |
+| `prompts/commit.md` | `/commit` — 스테이징 변경사항 컨벤션 커밋 |
+| `prompts/review.md` | `/review` — 변경사항 리뷰 (버그·보안·에러처리) |
+| `extensions/` | 번들 확장 심볼릭 링크 (`node_modules/<패키지>` 가리킴, 표기명 = 링크명) + 자체 확장 |
+| `extensions/tmux-status.ts` | tmux 상태바에 pi 실행 상태 색상 표시 (아래 참고) |
+| `skills/project-memory/` | `.pi/memory/` 프로젝트 메모리 컨벤션 (아래 참고) |
+| `themes/` | kit 소유 리소스 (현재 비어 있음) |
 | `package.json` | pi 매니페스트 — 확장 7종 번들 |
 | `package-lock.json` | 설치 재현성 고정 |
 | `setup.sh` | 설치 스크립트 |
@@ -56,6 +60,14 @@ alias pi-plan='pi --tools read,grep,find,ls'
 (이 모드에선 PLAN.md 저장도 불가 — 분석 출력을 직접 옮긴다)
 
 코드 탐색은 내장 grep/find 대신 fff override 모드 권장: 셸에 `export PI_FFF_MODE=override`.
+
+## 프로젝트 메모리
+
+`/skill:project-memory` — 프로젝트별 `.pi/memory/`(인덱스 `MEMORY.md` + 주제 파일)에 사실을 기록·조회. 읽기는 작업 시작 시, 쓰기는 요청받을 때만. `.git/info/exclude`로 로컬 유지.
+
+## tmux 상태
+
+tmux 안에서 pi를 실행하면 상태바 색상이 실행 상태를 표시: 보라=작업중, 노랑=대기(셸·UI), 초록=완료, 파랑=컴팩션, 빨강=에러. 팬 옵션 `@pi-state`로도 읽을 수 있음. 끄려면 `PI_TMUX_STATUS=0`.
 
 ## 워크플로우
 
