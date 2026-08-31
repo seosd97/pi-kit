@@ -7,7 +7,8 @@
 | 경로 | 내용 |
 | --- | --- |
 | `config/AGENTS.md` | 전역 행동 강령 4원칙. setup.sh가 `~/.pi/agent/AGENTS.md`로 심볼릭 링크 |
-| `prompts/plan.md` | `/plan` 프롬프트 — 구현 전 계획 수립 |
+| `prompts/plan.md` | `/plan` — 분석 후 `PLAN.md` 작성 (구현 안 함) |
+| `prompts/impl.md` | `/impl` — `PLAN.md` 단계별 실행, 검증마다 체크박스 갱신 |
 | `extensions/` `skills/` `themes/` | kit 소유 리소스 (현재 비어 있음) |
 | `package.json` | pi 매니페스트 — 확장 7종 번들 |
 | `package-lock.json` | 설치 재현성 고정 |
@@ -38,6 +39,22 @@ setup.sh는 `pi install` 후 AGENTS.md를 심볼릭 링크한다. 기존 파일�
 
 - 각 머신: `pi update --extensions` — lockfile 기준 설치.
 - 버전 당기기: repo에서 `npm update <패키지>` 후 lockfile 커밋·push.
+
+## 플랜 워크플로우
+
+1. `/plan <주제>` — 코드베이스 분석 후 `PLAN.md` 작성. 구현은 안 함.
+2. `PLAN.md` 검토·수정 — 파일이라 직접 고치거나 에이전트에게 시키면 됨.
+3. 새 세션에서 `/impl` — 단계를 하나씩 실행하고 검증 통과 시 체크.
+
+엄격한 읽기 전용 분석은 alias로:
+
+```bash
+alias pi-plan='pi --tools read,grep,find,ls'
+```
+
+(이 모드에선 PLAN.md 저장도 불가 — 분석 출력을 직접 옮긴다)
+
+코드 탐색은 내장 grep/find 대신 fff override 모드 권장: 셸에 `export PI_FFF_MODE=override`.
 
 ## 워크플로우
 

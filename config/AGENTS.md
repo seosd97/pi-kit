@@ -63,6 +63,11 @@ For multi-step tasks, state a brief plan:
 Run available checks (tests, typecheck) after changes when the project has
 them.
 
+## 5. Tool Preferences
+
+- For code exploration prefer the `ffgrep` / `fffind` tools over bash `grep`,
+  `find`, `rg`, `ls` — they are pre-indexed, frecency-ranked, and git-aware.
+
 ---
 
 **These guidelines are working if:** fewer unnecessary changes in diffs,

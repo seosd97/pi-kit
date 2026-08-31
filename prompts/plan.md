@@ -1,29 +1,52 @@
 ---
-description: 구현 전 계획 수립 (읽기 전용 분석)
+description: 구현 전 계획 수립 — PLAN.md 작성
 argument-hint: "<focus>"
 ---
 
 <!--
-  Plan workflow — GUIDANCE LEVEL ONLY.
-  This template instructs the model; it does NOT block write tools.
+  /plan — 분석하고 PLAN.md에 계획을 기록. 구현은 하지 않음.
+  실행은 /impl 템플릿으로.
 
-  For a true read-only plan session, start pi with a tool allowlist:
-
-    pi --tools read,grep,find,ls
-
-  ...then run /plan in that session.
+  엄격한 읽기 전용 분석 세션이 필요하면: pi --tools read,grep,find,ls
+  (이 모드에선 파일 저장이 불가하므로 출력된 계획을 직접 옮긴다)
 -->
-Analyze the task and produce an implementation plan. Do not modify anything yet.
+Analyze the task and produce an implementation plan. Do not implement anything —
+`PLAN.md` is the ONLY file you may create or modify.
 
 ## Steps
+
 1. Read the relevant files in full before drawing conclusions.
 2. Search for related code and existing patterns (grep/find).
 3. Identify risks, edge cases, and dependencies.
+4. If anything material is ambiguous, ask me before finalizing the plan.
 
-## Output format
-- Numbered implementation steps (what/why/risk per step)
-- Files to be modified
-- Tests to add or update
-- Open questions that need my decision
+## Write PLAN.md exactly in this structure
+
+# Plan: <short title>
+
+## Goal
+
+<one paragraph — what and why>
+
+## Approach
+
+<key design decisions and trade-offs>
+
+## Steps
+
+- [ ] 1. <small, individually verifiable step>
+- [ ] 2. ...
+
+## Files
+
+<files to create/modify, one per line, with intent>
+
+## Verification
+
+<how to verify — tests, commands, expected results>
+
+## Open questions
+
+<decisions you need from me, or "None">
 
 Focus: ${@:-the current task}
