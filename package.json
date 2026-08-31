@@ -1,15 +1,17 @@
 {
   "name": "@seosd/pi-kit",
   "private": true,
-  "keywords": ["pi-package"],
+  "keywords": [
+    "pi-package"
+  ],
   "dependencies": {
-    "pi-web-access": "^0.25.0",
-    "pi-lens": "^4.1.2",
-    "@juicesharp/rpiv-ask-user-question": "^2.7.1",
     "@ff-labs/pi-fff": "^0.10.5",
-    "pi-simplify": "^0.2.3",
+    "@firstpick/pi-themes-bundle": "^0.1.6",
+    "@juicesharp/rpiv-ask-user-question": "^2.7.1",
     "pi-background-tasks": "^2.4.2",
-    "@firstpick/pi-themes-bundle": "^0.1.6"
+    "pi-lens": "^4.1.2",
+    "pi-simplify": "^0.2.3",
+    "pi-web-access": "^0.25.0"
   },
   "bundledDependencies": [
     "pi-web-access",
@@ -24,8 +26,31 @@
     "extensions": [
       "./extensions"
     ],
-    "skills": ["./skills", "./node_modules/pi-lens/skills"],
-    "prompts": ["./prompts"],
-    "themes": ["./themes", "./node_modules/@firstpick/pi-themes-bundle/themes"]
+    "skills": [
+      "./skills",
+      "./node_modules/pi-lens/skills"
+    ],
+    "prompts": [
+      "./prompts"
+    ],
+    "themes": [
+      "./themes",
+      "./node_modules/@firstpick/pi-themes-bundle/themes"
+    ]
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "^0.84.4"
+  },
+  "bundleDependencies": [
+    "pi-web-access",
+    "pi-lens",
+    "@juicesharp/rpiv-ask-user-question",
+    "@ff-labs/pi-fff",
+    "pi-simplify",
+    "pi-background-tasks",
+    "@firstpick/pi-themes-bundle"
+  ],
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
   }
 }

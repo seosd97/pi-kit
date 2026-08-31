@@ -1,0 +1,11 @@
+{
+  "default": true,
+  "overrides": [
+    {
+      "files": ["prompts/**", "skills/**"],
+      "rules": {
+        "MD041": false
+      }
+    }
+  ]
+}

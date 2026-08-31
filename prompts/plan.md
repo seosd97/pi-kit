@@ -3,13 +3,6 @@ description: 구현 전 계획 수립 — PLAN.md 작성
 argument-hint: "<focus>"
 ---
 
-<!--
-  /plan — 분석하고 PLAN.md에 계획을 기록. 구현은 하지 않음.
-  실행은 /impl 템플릿으로.
-
-  엄격한 읽기 전용 분석 세션이 필요하면: pi --tools read,grep,find,ls
-  (이 모드에선 파일 저장이 불가하므로 출력된 계획을 직접 옮긴다)
--->
 Analyze the task and produce an implementation plan. Do not implement anything —
 `PLAN.md` is the ONLY file you may create or modify.
 
