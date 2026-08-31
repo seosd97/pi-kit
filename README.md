@@ -9,7 +9,8 @@
 | `config/AGENTS.md` | 전역 행동 강령 (행동 원칙 + 도구 선호). setup.sh가 `~/.pi/agent/AGENTS.md`로 심볼릭 링크 |
 | `prompts/plan.md` | `/plan` — 분석 후 `PLAN.md` 작성 (구현 안 함) |
 | `prompts/impl.md` | `/impl` — `PLAN.md` 단계별 실행, 검증마다 체크박스 갱신 |
-| `extensions/` `skills/` `themes/` | kit 소유 리소스 (현재 비어 있음) |
+| `extensions/` | 번들 확장 심볼릭 링크 (`node_modules/<패키지>` 가리킴, 표기명 = 링크명). 로딩 시 각 패키지의 자체 pi 매니페스트를 위임 읽기 |
+| `skills/` `themes/` | kit 소유 리소스 (현재 비어 있음) |
 | `package.json` | pi 매니페스트 — 확장 7종 번들 |
 | `package-lock.json` | 설치 재현성 고정 |
 | `setup.sh` | 설치 스크립트 |
@@ -60,7 +61,7 @@ alias pi-plan='pi --tools read,grep,find,ls'
 
 - 수정은 이 repo에서. 반영은 pi에서 `/reload`.
 - `~/.pi/agent/git/` 은 pi가 받아 둔 복사본 — 직접 수정 금지.
-- 확장 진입점(`node_modules/...`)은 upstream 구조 변경 시 깨질 수 있음 — 매니페스트와 함께 점검.
+- 확장 진입점은 `extensions/` 심볼링 링크가 각 패키지의 자체 매니페스트를 따라감 — upstream이 내부 구조를 바꿔도 repo 수정 불허. 패키지 추가/제거 시에만 링크 갱신. (Windows는 git 심볼링 링크 지원 필요)
 
 ## settings.json
 

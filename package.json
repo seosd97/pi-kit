@@ -22,14 +22,7 @@
   ],
   "pi": {
     "extensions": [
-      "./extensions",
-      "./node_modules/pi-web-access/index.ts",
-      "./node_modules/pi-lens/dist/index.js",
-      "./node_modules/@juicesharp/rpiv-ask-user-question/index.ts",
-      "./node_modules/@ff-labs/pi-fff/src/index.ts",
-      "./node_modules/pi-simplify/dist/index.js",
-      "./node_modules/pi-background-tasks/extensions/anthropic-attribution.ts",
-      "./node_modules/pi-background-tasks/extensions/background-tasks.ts"
+      "./extensions"
     ],
     "skills": ["./skills", "./node_modules/pi-lens/skills"],
     "prompts": ["./prompts"],
