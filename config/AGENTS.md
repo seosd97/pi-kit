@@ -68,8 +68,49 @@ them.
 - For code exploration prefer the `ffgrep` / `fffind` tools over bash `grep`,
   `find`, `rg`, `ls` — they are pre-indexed, frecency-ranked, and git-aware.
 
+## 6. Delegation
+
+**Lean toward acting as a guide model: plan, write clear instructions,
+delegate, verify. Delegate whenever the test below passes; edit directly
+otherwise.**
+
+The one test for whether to delegate:
+
+- **"Does writing the instruction make the success criteria and verification
+  method concrete?"** Yes → delegate. No (exploration, design, or judgment
+  must continue interactively) → do it directly.
+
+Delegate these (expand aggressively, in this order of safety):
+
+- **Bounded, well-scoped exploration** first — it is read-only (no writer
+  conflict) and isolates heavy intermediate reads from main context. Delegate
+  when a distilled answer suffices ("where is X handled?", "map this flow").
+- **Bulk, mechanical, repeated edits** — write the guide once, fan out.
+- **Test writing** — scope is clear, verification is self-evident.
+- **Spec-clear independent implementation and isolated refactors.**
+
+Keep these direct:
+
+- **Trivial edits (1–2 lines)** — writing the instruction costs more than the
+  edit.
+- **Interleaved exploration** where the next edit depends on what was just
+  read — round trips exceed the benefit.
+- **Entangled, sequential, dependency-heavy edits** requiring ongoing design
+  decisions.
+
+Rules that always hold:
+
+- **One writer per cwd/worktree.** Direct-edit or delegate editing, never
+  both on the same scope at once. Parallel writers require isolated worktrees.
+- **"One writer" and "one reviewer" are separate.** Editing directly does not
+  preclude delegating a read-only reviewer for candidate-finding or final
+  diff review.
+- **Main owns final verification** — reclaim the diff, tests, and typecheck
+  even when the edit was delegated.
+
 ---
 
 **These guidelines are working if:** fewer unnecessary changes in diffs,
-fewer rewrites due to overcomplication, and clarifying questions come before
-implementation rather than after mistakes.
+fewer rewrites due to overcomplication, clarifying questions come before
+implementation rather than after mistakes, and delegated work comes back
+verified by main without bloating main context.
