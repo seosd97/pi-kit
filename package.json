@@ -11,7 +11,7 @@
     "pi-background-tasks": "^2.4.2",
     "pi-lens": "^4.1.2",
     "pi-simplify": "^0.2.3",
-    "pi-web-access": "^0.25.0"
+    "pi-web-access": "^0.28.0"
   },
   "bundledDependencies": [
     "pi-web-access",
@@ -49,5 +49,14 @@
   },
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*"
-  }
+  },
+  "bundleDependencies": [
+    "pi-web-access",
+    "pi-lens",
+    "@juicesharp/rpiv-ask-user-question",
+    "@ff-labs/pi-fff",
+    "pi-simplify",
+    "pi-background-tasks",
+    "@firstpick/pi-themes-bundle"
+  ]
 }
