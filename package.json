@@ -24,7 +24,13 @@
   ],
   "pi": {
     "extensions": [
-      "./extensions"
+      "./extensions",
+      "./node_modules/pi-web-access",
+      "./node_modules/pi-lens",
+      "./node_modules/@juicesharp/rpiv-ask-user-question",
+      "./node_modules/@ff-labs/pi-fff",
+      "./node_modules/pi-simplify",
+      "./node_modules/pi-background-tasks"
     ],
     "skills": [
       "./skills",
@@ -41,15 +47,6 @@
   "devDependencies": {
     "@earendil-works/pi-coding-agent": "^0.84.4"
   },
-  "bundleDependencies": [
-    "pi-web-access",
-    "pi-lens",
-    "@juicesharp/rpiv-ask-user-question",
-    "@ff-labs/pi-fff",
-    "pi-simplify",
-    "pi-background-tasks",
-    "@firstpick/pi-themes-bundle"
-  ],
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*"
   }

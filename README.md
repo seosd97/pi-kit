@@ -11,7 +11,7 @@
 | `prompts/impl.md` | `/impl` — `PLAN.md` 단계별 실행, 검증마다 체크박스 갱신 |
 | `prompts/commit.md` | `/commit` — 스테이징 변경사항 컨벤션 커밋 |
 | `prompts/review.md` | `/review` — 변경사항 리뷰 (버그·보안·에러처리) |
-| `extensions/` | 번들 확장 심볼릭 링크 (`node_modules/<패키지>` 가리킴, 표기명 = 링크명) + 자체 확장 |
+| `extensions/` | 자체 확장 + 매니페스트(`package.json` `pi.extensions`)가 `node_modules/<패키지>` 경로로 번들 확장 참조 |
 | `extensions/tmux-status.ts` | tmux 상태바에 pi 실행 상태 색상 표시 (아래 참고) |
 | `skills/project-memory/` | `.pi/memory/` 프로젝트 메모리 컨벤션 (아래 참고) |
 | `themes/` | kit 소유 리소스 (현재 비어 있음) |
@@ -73,7 +73,7 @@ tmux 안에서 pi를 실행하면 상태바 색상이 실행 상태를 표시: �
 
 - 수정은 이 repo에서. 반영은 pi에서 `/reload`.
 - `~/.pi/agent/git/` 은 pi가 받아 둔 복사본 — 직접 수정 금지.
-- 확장 진입점은 `extensions/` 심볼링 링크가 각 패키지의 자체 매니페스트를 따라감 — upstream이 내부 구조를 바꿔도 repo 수정 불허. 패키지 추가/제거 시에만 링크 갱신. (Windows는 git 심볼링 링크 지원 필요)
+- 확장 진입점은 `package.json` `pi.extensions`가 `node_modules/<패키지>` 경로로 직접 참조 — 각 패키지의 자체 매니페스트를 따라감. upstream이 내부 구조를 바꿔도 repo 수정 불허. 패키지 추가/제거 시에만 목록 갱신.
 
 ## settings.json
 
