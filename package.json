@@ -15,6 +15,7 @@
     "pi-background-tasks": "^2.5.0",
     "pi-lens": "^4.1.4",
     "pi-simplify": "^0.2.3",
+    "pi-subagents": "^0.66.0",
     "pi-web-access": "^0.28.0"
   },
   "bundledDependencies": [
