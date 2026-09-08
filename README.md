@@ -16,7 +16,9 @@
 | `skills/project-memory/` | `.pi/memory/` 프로젝트 메모리 컨벤션 (아래 참고) |
 | `themes/` | kit 소유 리소스 (현재 비어 있음) |
 | `package.json` | pi 매니페스트 — 확장 7종 번들 |
-| `package-lock.json` | 설치 재현성 고정 |
+| `package-lock.json` | 소비자 머신 설치 재현성 고정 (npm) |
+| `pnpm-lock.yaml` | 개발용 lockfile (pnpm) |
+| `pnpm-workspace.yaml` | pnpm 빌드 스크립트 승인 목록 (@ast-grep/cli 등) |
 | `setup.sh` | 설치 스크립트 |
 
 ### 번들 확장
@@ -43,7 +45,18 @@ setup.sh는 `pi install` 후 AGENTS.md를 심볼릭 링크한다. 기존 파일�
 ## 업데이트
 
 - 각 머신: `pi update --extensions` — lockfile 기준 설치.
-- 버전 당기기: repo에서 `npm update <패키지>` 후 lockfile 커밋·push.
+- 버전 당기기: repo에서 버전 올린 뒤 두 lockfile 동기화 후 커밋·push.
+
+개발은 pnpm을 사용한다. 소비자 머신(`pi update --extensions`)은 npm으로 설치하므로 lockfile이 둘이다. 범위 내 버전업은 `update:packages` 스크립트가 두 lockfile을 함께 갱신한다:
+
+```bash
+pnpm run update:packages          # == pnpm update && pnpm sync:lock — pnpm-lock 갱신 + package-lock.json 동기화
+git add package.json package-lock.json pnpm-lock.yaml
+git commit -m "chore: 번들 확장 버전업 — <패키지> x.y.z"
+git push
+```
+
+버전 범위를 넘는 major/minor 업데이트는 `pnpm update` 대신 `pnpm add <패키지>@^new.major`를 쓰고, 그 뒤에 `npm run sync:lock`으로 package-lock.json을 맞춘다. 소비자 설치에서 `node_modules/`는 pi가 clone에서 npm install로 만들므로, 매니페스트(`pi.extensions`, `pi.skills`, `pi.themes`)의 `node_modules/<패키지>` 경로는 양쪽 lockfile 모두에서 동일하게 해석된다.
 
 ## 플랜 워크플로우
 
@@ -74,6 +87,12 @@ tmux 안에서 pi를 실행하면 상태바 색상이 실행 상태를 표시: �
 - 수정은 이 repo에서. 반영은 pi에서 `/reload`.
 - `~/.pi/agent/git/` 은 pi가 받아 둔 복사본 — 직접 수정 금지.
 - 확장 진입점은 `package.json` `pi.extensions`가 `node_modules/<패키지>` 경로로 직접 참조 — 각 패키지의 자체 매니페스트를 따라감. upstream이 내부 구조를 바꿔도 repo 수정 불허. 패키지 추가/제거 시에만 목록 갱신.
+
+### 개발 (pnpm)
+
+- 설치: `pnpm install` — `pnpm-lock.yaml` 기준.
+- 빌드 스크립트가 필요한 패키지(`@ast-grep/cli`, `@google/genai`, `protobufjs`)는 `pnpm-workspace.yaml`의 `allowBuilds`에 등록돼 있다. 새로 추가되는 패키지가 빌드 스크립트를 요구하면 pnpm이 경고를 출력하므로 그때 `allowBuilds`에 추가.
+- `pnpm-lock.yaml`과 `package-lock.json`을 모두 커밋한다. pnpm은 개발 환경(node_modules 심링크 레이아웃), npm은 소비자 머신의 pi 설치를 담당한다.
 
 ## settings.json
 

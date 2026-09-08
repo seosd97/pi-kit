@@ -4,12 +4,16 @@
   "keywords": [
     "pi-package"
   ],
+  "scripts": {
+    "update:packages": "pnpm update && pnpm sync:lock",
+    "sync:lock": "npm install --package-lock-only --ignore-scripts"
+  },
   "dependencies": {
-    "@ff-labs/pi-fff": "^0.10.5",
+    "@ff-labs/pi-fff": "^0.10.6",
     "@firstpick/pi-themes-bundle": "^0.1.6",
-    "@juicesharp/rpiv-ask-user-question": "^2.7.1",
-    "pi-background-tasks": "^2.4.2",
-    "pi-lens": "^4.1.2",
+    "@juicesharp/rpiv-ask-user-question": "^2.9.0",
+    "pi-background-tasks": "^2.5.0",
+    "pi-lens": "^4.1.4",
     "pi-simplify": "^0.2.3",
     "pi-web-access": "^0.28.0"
   },
@@ -50,13 +54,5 @@
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*"
   },
-  "bundleDependencies": [
-    "pi-web-access",
-    "pi-lens",
-    "@juicesharp/rpiv-ask-user-question",
-    "@ff-labs/pi-fff",
-    "pi-simplify",
-    "pi-background-tasks",
-    "@firstpick/pi-themes-bundle"
-  ]
+  "packageManager": "pnpm@11.23.0"
 }
