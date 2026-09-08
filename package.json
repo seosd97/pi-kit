@@ -25,7 +25,8 @@
     "@ff-labs/pi-fff",
     "pi-simplify",
     "pi-background-tasks",
-    "@firstpick/pi-themes-bundle"
+    "@firstpick/pi-themes-bundle",
+    "pi-subagents"
   ],
   "pi": {
     "extensions": [
@@ -35,11 +36,13 @@
       "./node_modules/@juicesharp/rpiv-ask-user-question",
       "./node_modules/@ff-labs/pi-fff",
       "./node_modules/pi-simplify",
-      "./node_modules/pi-background-tasks"
+      "./node_modules/pi-background-tasks",
+      "./node_modules/pi-subagents"
     ],
     "skills": [
       "./skills",
-      "./node_modules/pi-lens/skills"
+      "./node_modules/pi-lens/skills",
+      "./node_modules/pi-subagents/skills"
     ],
     "prompts": [
       "./prompts"
