@@ -15,7 +15,6 @@
     "pi-background-tasks": "^2.5.0",
     "pi-lens": "^4.1.4",
     "pi-simplify": "^0.2.3",
-    "pi-subagents": "^0.66.0",
     "pi-web-access": "^0.28.0"
   },
   "bundledDependencies": [
@@ -25,8 +24,7 @@
     "@ff-labs/pi-fff",
     "pi-simplify",
     "pi-background-tasks",
-    "@firstpick/pi-themes-bundle",
-    "pi-subagents"
+    "@firstpick/pi-themes-bundle"
   ],
   "pi": {
     "extensions": [
@@ -36,13 +34,11 @@
       "./node_modules/@juicesharp/rpiv-ask-user-question",
       "./node_modules/@ff-labs/pi-fff",
       "./node_modules/pi-simplify",
-      "./node_modules/pi-background-tasks",
-      "./node_modules/pi-subagents"
+      "./node_modules/pi-background-tasks"
     ],
     "skills": [
       "./skills",
-      "./node_modules/pi-lens/skills",
-      "./node_modules/pi-subagents/skills"
+      "./node_modules/pi-lens/skills"
     ],
     "prompts": [
       "./prompts"
