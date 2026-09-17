@@ -34,6 +34,7 @@ export default function (pi: ExtensionAPI) {
         if (branch) {
           cwdParts.push(theme.fg("success", `(${branch})`));
         }
+        const cwdLine = cwdParts.join(" ");
 
         const { model, thinkingLevel } = ctx;
         const modelParts = [];
@@ -44,12 +45,13 @@ export default function (pi: ExtensionAPI) {
         if (thinkingLevel) {
           modelParts.push(theme.fg("thinkingMax", `(${thinkingLevel})`));
         }
+        const modelLine = modelParts.join(" ");
 
         const parentSession = ctx.sessionManager.getHeader()?.parentSession;
         const parentSessionLine = parentSession ? theme.fg("text", parentSession) : "";
         const rows = [
-          [usageLine, modelParts.join(" ")],
-          [cwdParts.join(" "), parentSessionLine],
+          [usageLine, modelLine],
+          [cwdLine, parentSessionLine],
         ];
 
         return rows.map(([left, right]) => {
