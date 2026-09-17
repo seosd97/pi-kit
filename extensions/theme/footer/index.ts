@@ -1,6 +1,6 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
-import { formatNumber } from "./helpers/format.ts";
+import { formatNumber } from "../helpers/format.ts";
 
 export default function (pi: ExtensionAPI) {
   pi.on("session_start", (_event, ctx) => {
@@ -26,10 +26,11 @@ export default function (pi: ExtensionAPI) {
         }
 
         const contextUsage = ctx.getContextUsage();
-        const context = `${contextUsage?.percent?.toFixed(2) ?? 0}%/${formatNumber(contextUsage?.contextWindow ?? 0)}`;
+        const contextPercent = contextUsage?.percent || 0;
+        const context = `${contextPercent.toFixed(2)}%/${formatNumber(contextUsage?.contextWindow ?? 0)}`;
         const usageLine = [
-          theme.fg("thinkingHigh", `↑${formatNumber(input)} ↓${formatNumber(output)}`),
-          theme.fg("mdHeading", context),
+          theme.fg("text", `↑${formatNumber(input)} ↓${formatNumber(output)}`),
+          theme.fg(contextPercent >= 90 ? "error" : "mdHeading", context),
           theme.fg("success", `EST. $${cost.toFixed(2)}`),
         ].join(" ");
 
@@ -47,7 +48,7 @@ export default function (pi: ExtensionAPI) {
         }
         modelParts.push(theme.fg("thinkingMedium", model?.id || "no-model"));
         if (thinkingLevel) {
-          modelParts.push(theme.fg("thinkingMax", `(${thinkingLevel})`));
+          modelParts.push(theme.fg("thinkingHigh", `(${thinkingLevel})`));
         }
         const modelLine = modelParts.join(" ");
 
