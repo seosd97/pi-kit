@@ -25,7 +25,6 @@ function padToColumn(line: string, column: number): string {
   return line + " ".repeat(Math.max(column - visibleWidth(line), 0));
 }
 
-/** Read the current git branch by walking up from cwd. Handles worktrees. */
 function readGitBranch(cwd: string): string | null {
   try {
     let dir = cwd;

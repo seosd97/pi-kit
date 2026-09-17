@@ -35,6 +35,7 @@
   "pi": {
     "extensions": [
       "./extensions",
+      "./extensions/theme",
       "./node_modules/pi-web-access",
       "./node_modules/pi-lens",
       "./node_modules/@juicesharp/rpiv-ask-user-question",
