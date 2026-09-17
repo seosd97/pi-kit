@@ -29,13 +29,13 @@ export default function (pi: ExtensionAPI) {
         const contextPercent = contextUsage?.percent || 0;
         const context = `${contextPercent.toFixed(2)}%/${formatNumber(contextUsage?.contextWindow ?? 0)}`;
         const usageLine = [
-          theme.fg("text", `↑${formatNumber(input)} ↓${formatNumber(output)}`),
+          theme.fg("customMessageText", `↑${formatNumber(input)} ↓${formatNumber(output)}`),
           theme.fg(contextPercent >= 90 ? "error" : "mdHeading", context),
-          theme.fg("success", `EST. $${cost.toFixed(2)}`),
+          theme.fg("accent", `EST. $${cost.toFixed(2)}`),
         ].join(" ");
 
         const branch = footerData.getGitBranch();
-        const cwdParts = [theme.fg("thinkingMedium", ctx.cwd)];
+        const cwdParts = [theme.fg("text", ctx.cwd)];
         if (branch) {
           cwdParts.push(theme.fg("success", `(${branch})`));
         }
@@ -44,7 +44,7 @@ export default function (pi: ExtensionAPI) {
         const { model, thinkingLevel } = ctx;
         const modelParts = [];
         if (model) {
-          modelParts.push(theme.fg("success", `${model.provider}/${model?.id || "no-model"}`));
+          modelParts.push(theme.fg("accent", `${model.provider}/${model?.id || "no-model"}`));
         }
         if (thinkingLevel) {
           modelParts.push(theme.fg("thinkingHigh", `(${thinkingLevel})`));
