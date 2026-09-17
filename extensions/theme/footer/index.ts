@@ -58,10 +58,24 @@ export default function (pi: ExtensionAPI) {
           [cwdLine, parentSessionLine],
         ];
 
-        return rows.map(([left, right]) => {
+        const lines = rows.map(([left, right]) => {
           const padding = " ".repeat(Math.max(1, width - visibleWidth(left) - visibleWidth(right)));
           return truncateToWidth(left + padding + right, width);
         });
+
+        const statuses = Array.from(footerData.getExtensionStatuses().entries())
+          .sort(([a], [b]) => a.localeCompare(b))
+          .map(([, text]) =>
+            text
+              .replace(/[\r\n\t]/g, " ")
+              .replace(/ +/g, " ")
+              .trim(),
+          );
+        if (statuses.length > 0) {
+          lines.push(truncateToWidth(statuses.join(" "), width, theme.fg("dim", "...")));
+        }
+
+        return lines;
       },
     }));
   });
