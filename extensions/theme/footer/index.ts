@@ -44,9 +44,8 @@ export default function (pi: ExtensionAPI) {
         const { model, thinkingLevel } = ctx;
         const modelParts = [];
         if (model) {
-          modelParts.push(theme.fg("success", `[${model.provider}]`));
+          modelParts.push(theme.fg("success", `${model.provider}/${model?.id || "no-model"}`));
         }
-        modelParts.push(theme.fg("thinkingMedium", model?.id || "no-model"));
         if (thinkingLevel) {
           modelParts.push(theme.fg("thinkingHigh", `(${thinkingLevel})`));
         }
