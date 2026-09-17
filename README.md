@@ -19,6 +19,7 @@
 | `package-lock.json` | 소비자 머신 설치 재현성 고정 (npm) |
 | `pnpm-lock.yaml` | 개발용 lockfile (pnpm) |
 | `pnpm-workspace.yaml` | pnpm 빌드 스크립트 승인 목록 (@ast-grep/cli 등) |
+| `biome.json` | 포맷·린트·import 정렬 설정 |
 | `setup.sh` | 설치 스크립트 |
 
 ### 번들 확장
@@ -93,6 +94,19 @@ tmux 안에서 pi를 실행하면 상태바 색상이 실행 상태를 표시: �
 - 설치: `pnpm install` — `pnpm-lock.yaml` 기준.
 - 빌드 스크립트가 필요한 패키지(`@ast-grep/cli`, `@google/genai`, `protobufjs`)는 `pnpm-workspace.yaml`의 `allowBuilds`에 등록돼 있다. 새로 추가되는 패키지가 빌드 스크립트를 요구하면 pnpm이 경고를 출력하므로 그때 `allowBuilds`에 추가.
 - `pnpm-lock.yaml`과 `package-lock.json`을 모두 커밋한다. pnpm은 개발 환경(node_modules 심링크 레이아웃), npm은 소비자 머신의 pi 설치를 담당한다.
+
+### 포맷·린트 (Biome)
+
+```bash
+pnpm check       # 포맷·린트·import 정렬 검사 (파일 변경 없음)
+pnpm check:fix   # 안전한 자동 수정
+pnpm lint        # 린트만 검사
+pnpm format     # 포맷 적용
+```
+
+공백 2칸, 큰따옴표, 세미콜론을 사용한다.
+`.gitignore`에 포함된 파일과 lockfile은 검사하지 않는다.
+VS Code에서는 `biomejs.biome` 확장을 설치하고 기본 포맷터로 선택하면 된다.
 
 ## settings.json
 

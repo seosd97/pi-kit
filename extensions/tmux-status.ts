@@ -34,8 +34,7 @@ export default function tmuxStatus(pi: ExtensionAPI) {
   pi.on("ui_prompt_start", async () => apply("waiting"));
   pi.on("ui_prompt_end", async () => apply("active"));
   pi.on("tool_execution_start", async (event) => {
-    if (event.toolName === "bash" || event.toolName === "powershell")
-      apply("waiting");
+    if (event.toolName === "bash" || event.toolName === "powershell") apply("waiting");
   });
   pi.on("tool_execution_end", async (event) => {
     if (event.toolName === "bash" || event.toolName === "powershell") {

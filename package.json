@@ -5,6 +5,10 @@
     "pi-package"
   ],
   "scripts": {
+    "check": "biome check .",
+    "check:fix": "biome check --write .",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
     "update:packages": "pnpm update && pnpm sync:lock",
     "sync:lock": "npm install --package-lock-only --ignore-scripts"
   },
@@ -52,6 +56,7 @@
     ]
   },
   "devDependencies": {
+    "@biomejs/biome": "2.5.13",
     "@earendil-works/pi-coding-agent": "^0.84.4"
   },
   "peerDependencies": {

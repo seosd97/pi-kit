@@ -4,6 +4,10 @@ import { formatNumber } from "./helpers/format.ts";
 
 export default function (pi: ExtensionAPI) {
   pi.on("session_start", (_event, ctx) => {
+    if (ctx.mode !== "tui") {
+      return;
+    }
+
     ctx.ui.setFooter((tui, theme, footerData) => ({
       dispose: footerData.onBranchChange(() => tui.requestRender()),
       invalidate: () => {},
@@ -60,5 +64,12 @@ export default function (pi: ExtensionAPI) {
         });
       },
     }));
+  });
+
+  pi.registerCommand("builtin-footer", {
+    handler: async (_args, ctx) => {
+      ctx.ui.setFooter(undefined);
+      ctx.ui.notify("Built-in footer restored", "info");
+    },
   });
 }
