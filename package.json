@@ -16,7 +16,6 @@
     "@ff-labs/pi-fff": "^0.10.6",
     "@firstpick/pi-themes-bundle": "^0.1.6",
     "@juicesharp/rpiv-ask-user-question": "^2.9.0",
-    "@pi-kaush/pi-tool-call-markers": "^0.3.1",
     "pi-background-tasks": "^2.5.0",
     "pi-lens": "^4.1.4",
     "pi-simplify": "^0.2.3",
@@ -29,8 +28,7 @@
     "@ff-labs/pi-fff",
     "pi-simplify",
     "pi-background-tasks",
-    "@firstpick/pi-themes-bundle",
-    "@pi-kaush/pi-tool-call-markers"
+    "@firstpick/pi-themes-bundle"
   ],
   "pi": {
     "extensions": [
@@ -41,8 +39,7 @@
       "./node_modules/@juicesharp/rpiv-ask-user-question",
       "./node_modules/@ff-labs/pi-fff",
       "./node_modules/pi-simplify",
-      "./node_modules/pi-background-tasks",
-      "./node_modules/@pi-kaush/pi-tool-call-markers"
+      "./node_modules/pi-background-tasks"
     ],
     "skills": [
       "./skills",
