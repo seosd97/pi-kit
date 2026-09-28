@@ -3,3 +3,5 @@ allowBuilds:
   '@google/genai': true
   esbuild: true
   protobufjs: true
+minimumReleaseAgeExclude:
+  - pi-background-tasks@2.6.8
