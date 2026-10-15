@@ -14,10 +14,10 @@
   },
   "dependencies": {
     "@ff-labs/pi-fff": "^0.10.6",
-    "@firstpick/pi-themes-bundle": "^0.1.6",
-    "@juicesharp/rpiv-ask-user-question": "^2.9.0",
+    "@firstpick/pi-themes-bundle": "^0.1.7",
+    "@juicesharp/rpiv-ask-user-question": "^2.13.8",
     "pi-background-tasks": "^2.6.10",
-    "pi-lens": "^4.1.4",
+    "pi-lens": "^4.4.3",
     "pi-simplify": "^0.2.3",
     "pi-web-access": "^0.28.0"
   },
